@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<string name="app_name">Open Sesame</string>
+	<string name="registering">Registering app</string>
+	<string name="garage_closed">Garage door is closed</string>
+	<string name="garage_open">Garage door is open</string>
+	<string name="garageDoor">Garage door</string>
+	<string name="loading">Loading</string>
+	<string name="errorDownload">Could not download status</string>
+	<string name="actionOpenDoor">Open door</string>
+	<string name="actionCloseDoor">Close door</string>
+	<string name="pinPrompt">Enter garage PIN</string>
+	<string name="commandOK">Command sent</string>
+	<string name="commandFailed">Command failed</string>
+	<string name="date_format">Since %s</string>
+	<string name="history">History</string>
+	<string name="couldNotDownload">Could not download history</string>
+
+</resources>

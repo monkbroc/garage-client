@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+	package="com.jvanier.android.opensesame"
+	android:versionCode="2"
+	android:versionName="2.0" >
+
+	<uses-permission android:name="android.permission.INTERNET" />
+
+	<!-- Cloud to Device Messaging permissions -->
+	<permission
+		android:name="com.jvanier.android.opensesame.permission.C2D_MESSAGE"
+		android:protectionLevel="signature" />
+
+	<!-- Internal permission -->
+	<permission
+		android:name="com.jvanier.android.opensesame.permission.INTERNAL"
+		android:protectionLevel="signature" />
+
+	<uses-permission android:name="com.jvanier.android.opensesame.permission.C2D_MESSAGE" />
+	<uses-permission android:name="com.jvanier.android.opensesame.permission.INTERNAL" />
+	<uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+
+	<uses-sdk
+		android:minSdkVersion="1"
+		android:targetSdkVersion="17" />
+
+	<uses-permission android:name="android.permission.WAKE_LOCK" />
+
+	<application
+		android:allowBackup="true"
+		android:icon="@drawable/ic_launcher"
+		android:label="@string/app_name"
+		android:screenOrientation="portrait"
+		android:theme="@style/Theme.Latest" >
+		<activity
+			android:name=".OpenSesameActivity"
+			android:configChanges="orientation|keyboardHidden|screenSize|smallestScreenSize"
+			android:label="@string/app_name"
+			android:launchMode="singleTask"
+			android:screenOrientation="portrait" >
+			<intent-filter>
+				<action android:name="android.intent.action.MAIN" />
+
+				<category android:name="android.intent.category.LAUNCHER" />
+			</intent-filter>
+		</activity>
+		<activity
+			android:name=".HistoryActivity"
+			android:configChanges="orientation|keyboardHidden|screenSize|smallestScreenSize"
+			android:label="@string/history"
+			android:screenOrientation="portrait" >
+		</activity>
+		<!--
+            In order to use the c2dm library, an
+               application must declare a class with the name C2DMReceiver, in its
+               own package, extending com.google.android.c2dm.C2DMBaseReceiver
+
+               It must also include this section in the manifest, replacing
+                "com.google.android.apps.chrometophone" with its package name.
+		-->
+		<service android:name=".C2DMReceiver" >
+		</service>
+
+		<!--
+             Only Google services can send messages to the app. If this permission weren't set
+             any other app would be able to send messages to us.
+		-->
+		<receiver
+			android:name="com.google.android.c2dm.C2DMBroadcastReceiver"
+			android:permission="com.google.android.c2dm.permission.SEND" >
+
+			<!-- Receive actual messages -->
+			<intent-filter>
+				<action android:name="com.google.android.c2dm.intent.RECEIVE" />
+
+				<category android:name="com.jvanier.android.opensesame" />
+			</intent-filter>
+			<!-- Receive registration ids -->
+			<intent-filter>
+				<action android:name="com.google.android.c2dm.intent.REGISTRATION" />
+
+				<category android:name="com.jvanier.android.opensesame" />
+			</intent-filter>
+		</receiver>
+		<receiver
+			android:name=".RequestBroadcastReceiver"
+			android:permission="com.jvanier.android.opensesame.permission.INTERNAL" >
+			<intent-filter>
+				<action android:name="com.jvanier.android.opensesame.intent.REQUEST" />
+			</intent-filter>
+		</receiver>
+		<receiver
+			android:name=".NotificationBroadcastReceiver"
+			android:exported="false" >
+			<intent-filter>
+				<action android:name="com.jvanier.android.opensesame.intent.UPDATE" />
+			</intent-filter>
+		</receiver>
+	</application>
+
+</manifest>
