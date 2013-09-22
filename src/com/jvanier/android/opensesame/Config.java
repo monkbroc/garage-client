@@ -16,10 +16,4 @@ public class Config {
     public static final String SERVER_SUCCESS = "success";
     public static final String SERVER_HISTORY_URL = SERVER_BASE_URL + "/history";
     
-    public static final String INTENT_STATE_UPDATE = "com.jvanier.android.opensesame.intent.UPDATE";
-    public static final String INTENT_STATE_UP = "up";
-	public static final String INTENT_STATE_SINCE = "since";
-
-    public static final String INTENT_REQUEST_UPDATE = "com.jvanier.android.opensesame.intent.REQUEST";
-
 }

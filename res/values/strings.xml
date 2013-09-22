@@ -13,6 +13,7 @@
 	<string name="pinPrompt">Enter garage PIN</string>
 	<string name="commandOK">Command sent</string>
 	<string name="commandFailed">Command failed</string>
+	<string name="wrongPin">Wrong PIN</string>
 	<string name="date_format">Since %s</string>
 	<string name="history">History</string>
 	<string name="couldNotDownload">Could not download history</string>

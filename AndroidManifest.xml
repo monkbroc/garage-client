@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
 	package="com.jvanier.android.opensesame"
-	android:versionCode="2"
-	android:versionName="2.0" >
+	android:versionCode="5"
+	android:versionName="5.0" >
 
 	<uses-permission android:name="android.permission.INTERNET" />
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
 	<!-- Cloud to Device Messaging permissions -->
 	<permission
@@ -21,19 +22,20 @@
 	<uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
 
 	<uses-sdk
-		android:minSdkVersion="1"
-		android:targetSdkVersion="17" />
+		android:minSdkVersion="5"
+		android:targetSdkVersion="18" />
 
 	<uses-permission android:name="android.permission.WAKE_LOCK" />
 
 	<application
+		android:name=".controllers.OpenSesameApp"
 		android:allowBackup="true"
 		android:icon="@drawable/ic_launcher"
 		android:label="@string/app_name"
 		android:screenOrientation="portrait"
 		android:theme="@style/Theme.Latest" >
 		<activity
-			android:name=".OpenSesameActivity"
+			android:name=".controllers.OpenSesameActivity"
 			android:configChanges="orientation|keyboardHidden|screenSize|smallestScreenSize"
 			android:label="@string/app_name"
 			android:launchMode="singleTask"
@@ -45,7 +47,7 @@
 			</intent-filter>
 		</activity>
 		<activity
-			android:name=".HistoryActivity"
+			android:name=".controllers.HistoryActivity"
 			android:configChanges="orientation|keyboardHidden|screenSize|smallestScreenSize"
 			android:label="@string/history"
 			android:screenOrientation="portrait" >
@@ -56,14 +58,14 @@
                own package, extending com.google.android.c2dm.C2DMBaseReceiver
 
                It must also include this section in the manifest, replacing
-                "com.google.android.apps.chrometophone" with its package name.
+                "com.google.android.apps.chrometophone" with its package name.
 		-->
 		<service android:name=".C2DMReceiver" >
 		</service>
 
 		<!--
              Only Google services can send messages to the app. If this permission weren't set
-             any other app would be able to send messages to us.
+             any other app would be able to send messages to us.
 		-->
 		<receiver
 			android:name="com.google.android.c2dm.C2DMBroadcastReceiver"
@@ -80,20 +82,6 @@
 				<action android:name="com.google.android.c2dm.intent.REGISTRATION" />
 
 				<category android:name="com.jvanier.android.opensesame" />
-			</intent-filter>
-		</receiver>
-		<receiver
-			android:name=".RequestBroadcastReceiver"
-			android:permission="com.jvanier.android.opensesame.permission.INTERNAL" >
-			<intent-filter>
-				<action android:name="com.jvanier.android.opensesame.intent.REQUEST" />
-			</intent-filter>
-		</receiver>
-		<receiver
-			android:name=".NotificationBroadcastReceiver"
-			android:exported="false" >
-			<intent-filter>
-				<action android:name="com.jvanier.android.opensesame.intent.UPDATE" />
 			</intent-filter>
 		</receiver>
 	</application>
